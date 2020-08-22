@@ -28,11 +28,31 @@ class TodoApp extends React.Component{
         .catch(error => console.log(error));
     };
 
+    updateTodo = (id, completed) => {
+        const todoUpdate = {
+            id: id,
+            completed: completed ? 0 : 1
+        };
+        axios.post('/api/update', todoUpdate)
+            .then(res => {
+                this.setState({
+                    ...this.state.todos.map( todo => {
+                        if(todo.id===id){
+                            todo.completed = todo.completed ? 0 : 1;
+                        }
+                        return todo;
+                    })
+                });
+            })
+        .catch(error => console.log(error));
+    };
+
     render(){
         return(
             <div className="container">
                 <Todo todos = {this.state.todos} 
                     deleteTodo={this.deleteTodo}
+                    updateTodo={this.updateTodo}
                 />
                 
             </div>

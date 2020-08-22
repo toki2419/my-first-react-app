@@ -9,6 +9,7 @@ class Todos extends React.Component{
                         <TodoItem 
                             key={todo.id} 
                             todo={todo}
+                            updateTodo={this.props.updateTodo}
                             deleteTodo={this.props.deleteTodo}
                         />
                     ))}

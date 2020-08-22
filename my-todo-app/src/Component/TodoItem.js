@@ -7,6 +7,7 @@ class TodoItem extends React.Component{
             <li className="todo-item">
                 <input className="item-check" 
                     type="Checkbox" checked={completed}
+                    onChange={()=> this.props.updateTodo(id, completed)}
                 />
                 <span className={completed ? "completed" : "not-completed"}>
                     {title}

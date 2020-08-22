@@ -36,4 +36,14 @@ app.post('/api/delete', (req, res) => {
     })
 });
 
+app.post('/api/update', (req, res) => {
+    var sql = "UPDATE todo SET "
+            + "completed = '" + req.body.completed + "' "
+            + "WHERE id = '" + req.body.id + "'";
+    connection.query(sql, (err, result) => {
+        if(err) throw err;
+        res.json({todos: result});
+    })
+});
+
 app.listen(4000, () => console.log('App listening on port 4000'));
