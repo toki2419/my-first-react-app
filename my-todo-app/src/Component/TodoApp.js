@@ -1,7 +1,8 @@
 import React from 'react';
 import axios from 'axios';
-import Todo from './Todo'
-import AddTodo from './AddTodo'
+import Todo from './Todo';
+import AddTodo from './AddTodo';
+import Header from './Header';
 
 class TodoApp extends React.Component{
     state = {
@@ -10,7 +11,7 @@ class TodoApp extends React.Component{
 
     componentDidMount() {
         axios.get('/api/select').then(re => {
-            //console.log(re.data);
+            console.log(re.data);
             this.setState({todos: re.data.todos});
         })
         .catch(error => console.log(error));
@@ -51,7 +52,7 @@ class TodoApp extends React.Component{
             title: title,
             completed: 0
         };
-        axios.post('/api/insert', todoData). then (res => {
+        axios.post('/api/insert', todoData).then(res => {
             let todos = this.state.todos;
             todos = [todoData, ...todos]
             this.setState({todos:todos});
@@ -61,10 +62,11 @@ class TodoApp extends React.Component{
     render(){
         return(
             <div className="container">
+                <Header todos = {this.state.todos}/>
                 <AddTodo addTodo = {this.addTodo}/>
                 <Todo todos = {this.state.todos} 
-                    deleteTodo={this.deleteTodo}
-                    updateTodo={this.updateTodo}
+                    deleteTodo = {this.deleteTodo}
+                    updateTodo = {this.updateTodo}
                 />                
             </div>
         );

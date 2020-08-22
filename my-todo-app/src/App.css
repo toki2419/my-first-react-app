@@ -97,7 +97,7 @@
 
 .input-text {
   flex: 8;
-  font-size: 14px;
+  font-size: 16px;
   padding: 6px 15px;
   background: rgba(103, 140, 137, 0.65);
   border: none;
@@ -105,6 +105,7 @@
   outline: none;
   font-weight: 400;
   width: 80%;
+  line-height: 25px;
 }
 
 .input-text::placeholder {
@@ -118,8 +119,33 @@
   background: #678c89;
   color: #fff;
   text-transform: uppercase;
-  cursor: pointer;
   font-weight: 400;
   width: 20%;
   outline: none;
+  transition: .3s;
+}
+
+.btn-submit:hover {
+  background: #d35e0f;
+  cursor: pointer;
+}
+
+.header-container{
+  background: #13968b;
+}
+
+h1{
+  text-align: center;
+}
+
+h4{
+  padding-top: 5px;
+  margin-left: 15px;
+  color: rebeccapurple
+}
+
+h3{
+  padding: 5px 0px;
+  margin-left: 15px;
+  color: red;
 }
