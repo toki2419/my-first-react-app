@@ -1,6 +1,12 @@
 const express = require('express');
 const mysql = require('mysql');
 const app = express();
+const bodyParser = require('body-parser');
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 
 const connection = mysql.createConnection({
     host: 'localhost',
@@ -19,6 +25,15 @@ app.get('/api/select', (req, res) => {
         if (err) throw err;
         res.json({todos: results});
     });
+});
+
+app.post('/api/delete', (req, res) => {
+    var sql = "DELETE FROM todo "
+            + "WHERE id = '" + req.body.id + "'";
+    connection.query(sql, (err, result) => {
+        if(err) throw err;
+        res.json({todos: result});
+    })
 });
 
 app.listen(4000, () => console.log('App listening on port 4000'));

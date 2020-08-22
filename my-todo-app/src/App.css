@@ -45,3 +45,46 @@
   margin: 0 auto;
   border: 1px solid #678c89;
 }
+
+.todo-item {
+  margin-right: 15px;
+  list-style-type: none;
+  padding: 10px 15px;
+  border-top: 1px solid #678c89;
+}
+
+.todo-item span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 80%;
+  height: 18px;
+  display: inline-block;
+}
+ 
+.item-check{
+  margin-right: 15px;
+}
+
+.completed {
+  font-style: italic;
+  color: #08f773;
+  text-decoration: line-through
+}
+
+.not-completed{
+  font-style: italic;
+  font-weight: 600;
+  color: red;
+}
+
+.btn-delete{
+  background: #d35e0f;
+  color: #fff;
+  border: 1px solod #d35e0f;
+  padding: 3px 7px;
+  border-radius: 50%;
+  cursor: pointer;
+  float: right;
+  outline: none;
+}
