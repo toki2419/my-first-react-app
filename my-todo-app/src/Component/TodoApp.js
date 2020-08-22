@@ -7,14 +7,17 @@ class TodoApp extends React.Component{
     };
 
     componentDidMount() {
-        axios.get('/api/select')
-            .then(re => this.setState({todos: re.data.message}))
+        axios.get('/api/select').then(re => {
+            console.log(re.data);
+            this.setState({todos: re.data.todos});
+        })
+        .catch(error => console.log(error));
     }
 
     render(){
         return(
             <div className="container">
-                <h1>{ this.state.todos }</h1>
+                <h1> AAAAAAAAA </h1>
             </div>
         );
     };
