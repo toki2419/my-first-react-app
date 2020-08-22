@@ -46,4 +46,15 @@ app.post('/api/update', (req, res) => {
     })
 });
 
+app.post('/api/insert', (req, res) => {
+    var sql = "INSERT INTO todo(title, completed) "
+            + "VALUES ('"
+            +       req.body.title + "', '"
+            +       req.body.completed + "')";
+    connection.query(sql, (err, result) => {
+        if(err) throw err;
+        res.json({todos: result});
+    });
+});
+
 app.listen(4000, () => console.log('App listening on port 4000'));

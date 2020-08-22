@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import Todo from './Todo'
+import AddTodo from './AddTodo'
 
 class TodoApp extends React.Component{
     state = {
@@ -33,28 +34,38 @@ class TodoApp extends React.Component{
             id: id,
             completed: completed ? 0 : 1
         };
-        axios.post('/api/update', todoUpdate)
-            .then(res => {
-                this.setState({
-                    ...this.state.todos.map( todo => {
-                        if(todo.id===id){
-                            todo.completed = todo.completed ? 0 : 1;
-                        }
-                        return todo;
-                    })
-                });
-            })
-        .catch(error => console.log(error));
+        axios.post('/api/update', todoUpdate).then(res => {
+            this.setState({
+                ...this.state.todos.map( todo => {
+                    if(todo.id===id){
+                        todo.completed = todo.completed ? 0 : 1;
+                    }
+                    return todo;
+                })
+            });
+        }).catch(error => console.log(error));
+    };
+
+    addTodo = title => {
+        const todoData = {
+            title: title,
+            completed: 0
+        };
+        axios.post('/api/insert', todoData). then (res => {
+            let todos = this.state.todos;
+            todos = [todoData, ...todos]
+            this.setState({todos:todos});
+        }).catch(err => console.log(err));
     };
 
     render(){
         return(
             <div className="container">
+                <AddTodo addTodo = {this.addTodo}/>
                 <Todo todos = {this.state.todos} 
                     deleteTodo={this.deleteTodo}
                     updateTodo={this.updateTodo}
-                />
-                
+                />                
             </div>
         );
     };
